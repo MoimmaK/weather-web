@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ze Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="blur-overlay"></div>
+  <video autoplay loop muted class="bg-video">
+    <source src="bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h1>Weather App</h1>
+      <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="table.html">Tables</a></li>
+        </ul>
+      </nav>
+    </aside>
+    
+    <div class="main-content">
+      <header class="top-bar">
+        <input type="text" placeholder="Enter City" id="city-input">
+        <button id="get-weather">Get Weather</button>
+        <div class="user-profile">
+          <img class="pimg" src="profile.jpg" width="50" height="50" alt="Profile Image">
+        </div>
+      </header>
+      
+
+      <section class="weather-info">
+        <div class="loading-spinner"></div>
+        <div class="current-weather" id="weather-info">
+          
+              <h2 class="city-name">City Name</h2>
+        
+          <div class="temp-container">
+              <p class="temp">Temperature: 0 °C</p>
+              <img class="weather-icon" src="" alt="Weather Icon">
+          </div>
+          <p class="humidity">Humidity: 0%</p>
+          <p class="wind">Wind Speed: 0 m/s</p>
+          <p class="desc">Condition: Clear</p>
+      </div>
+      
+        <div id="weatherDetails"></div>
+      </section>
+      
+      <section class="temperature-unit">
+        <label>
+            <input type="radio" name="unit" value="metric" checked>
+            <span class="custom-radio"></span>
+            Celsius
+        </label>
+        <label>
+            <input type="radio" name="unit" value="imperial">
+            <span class="custom-radio"></span>
+            Fahrenheit
+        </label>
+    </section>
+    
+
+    <section class="forecast">
+      <h2 style="text-align: center;">Forecast</h2>
+      <div class="charts">
+        <div class="chart">
+          <h3>5-Day Temperature Forecast</h3>
+          <canvas id="bar-chart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Weather Condition Distribution</h3>
+          <canvas id="doughnut-chart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Temperature Change Over 5 Days</h3>
+          <canvas id="line-chart"></canvas>
+        </div>
+      </div>
+    </section>
+    
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

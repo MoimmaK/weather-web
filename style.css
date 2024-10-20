@@ -1,0 +1,478 @@
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0f0f2f;
+  color: #333;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #6e4875;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Glow and Scale Animation */
+@keyframes glow-scale {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(75, 0, 130, 0.7);
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.9);
+  }
+}
+
+
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 9; /* Make sure it's behind the spinner but above other content */
+  display: none; /* Initially hidden */
+}
+
+/* Video Background */
+.bg-video {
+  position: fixed; /* Fix the video to the background */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Cover the entire area */
+  z-index: -1; /* Ensure it stays behind content */
+  opacity: 0.7; /* Slightly opaque */
+}
+
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(185, 175, 175, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  margin:20px;
+}
+
+/* Sidebar */
+.sidebar {
+  flex-direction: column;
+  display:flex;
+  align-content: left;
+  justify-content: left;
+  align-items: left;
+  background-color: #1a1a2e;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  
+ 
+  margin-right: 20px;
+  box-shadow: #6e4875;
+  float:left;
+  height:100%;
+}
+
+.sidebar h1 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+/* Sidebar */
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.sidebar nav ul li a:hover {
+  color: #c48ace; /* Change to your preferred hover color */
+  transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+
+/* Main Content */
+.main-content {
+
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a2e;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.top-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.top-bar button {
+  padding: 10px 20px;
+  background-color: #6e4875; /* Darker shade to fit the theme */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition for hover effects */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+}
+
+.top-bar button:hover {
+  background-color: #5b3d63; /* Slightly darker shade on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+
+/* Profile Image Styling */
+.user-profile {
+  display: flex;
+  align-items: center; /* Center the profile image vertically */
+}
+
+.user-profile .pimg {
+  border-radius: 50%; /* Make the image circular */
+  border: 2px solid #6e4875; /* Optional: add a border */
+  margin-left: 10px; /* Space between input/button and the image */
+  animation: glow-scale 1.5s infinite alternate; /* Apply the animation */
+}
+
+/* Keyframe Animation for Glow and Scale Effect */
+@keyframes glow-scale {
+  0% {
+    transform: scale(1); /* Original size */
+    box-shadow: 0 0 10px rgba(75, 0, 130, 0.7); /* Initial glow */
+  }
+  100% {
+    transform: scale(1.1); /* Slightly larger */
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.9); /* Brighter glow */
+  }
+}
+
+
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 1.4rem;
+  
+}
+
+
+.temp-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  background-color: rgba(152, 177, 199, 0.9); /* Brighter background */
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  animation: glow-scale 1.5s infinite alternate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+
+.weather-icon:hover {
+  transform: scale(1.1); /* Slightly scale up on hover */
+  box-shadow: 0 0 20px #6e4875, 0 0 30px #6e4875, 0 0 40px #6e4875; /* Neon glow effect */
+}
+
+
+
+
+/* Current Weather */
+.current-weather {
+  position: relative; /* Ensure that children can be positioned absolutely */
+  background-color: #3498db; /* Fallback color */
+  color: white;
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  overflow: hidden; /* Hide overflow from children */
+}
+
+.current-weather .bg-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0; /* Ensure it stays behind text */
+  opacity: 0.4; /* Adjust opacity for visibility */
+  border-radius: 10px; /* Match the border radius */
+  background-size: cover; /* Ensure the background covers the area */
+  background-position: center; /* Center the background */
+
+}
+
+.current-weather h2,
+.current-weather .temp,
+.current-weather .desc,
+.current-weather .humidity,
+.current-weather .wind {
+  position: relative; /* Bring text above the background GIF */
+  z-index: 1; /* Ensure text is on top of the background */
+}
+
+
+.current-weather h2 {
+  font-size: 2rem;
+}
+
+.current-weather .temp {
+  font-size: 1.4rem;
+}
+
+.current-weather .desc {
+  font-size: 1.4rem;
+}
+
+h1{
+  background-color: #6e4875;
+  border-radius: 10px;
+  padding:10px;
+}
+
+.charts {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+
+.chart {
+  margin: 10px; /* Adjust if necessary */
+  background-color: #f0f0f0;
+  flex: 1 1 100%; /* Ensures full width on smaller screens */
+  width: 100%; /* Ensure charts respect container width */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  
+}
+
+.chart:hover {
+  transform: scale(1.05);
+}
+
+canvas {
+  width: max-content;
+  height: auto; /* Adjust height dynamically */
+  margin-top: 10px;
+}
+
+
+
+#error {
+  color: red;
+  font-size: 1.2rem;
+}
+
+#weatherDetails {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.temperature-unit {
+  display: flex;
+  align-items: center;
+  margin-bottom:50px;
+  justify-content: center;
+}
+
+label {
+  position: relative;
+  margin-right: 20px;
+  cursor: pointer; /* Change cursor to pointer for better UX */
+}
+
+input[type="radio"] {
+  display: none; /* Hide the default radio button */
+}
+
+.custom-radio {
+  display: inline-block;
+  width: 20px; /* Width of the custom radio */
+  height: 20px; /* Height of the custom radio */
+  border: 2px solid #4B0082; /* Border color */
+  border-radius: 50%; /* Make it circular */
+  margin-right: 5px; /* Space between radio and label text */
+  position: relative;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+input[type="radio"]:checked + .custom-radio {
+  background-color: #4B0082; /* Change background color when checked */
+}
+
+.custom-radio:hover {
+  background-color: rgba(75, 0, 130, 0.5); /* Light up effect on hover */
+}
+
+
+/* Responsive Design */
+
+/* Large Tablets and Desktops */
+@media (max-width: 1200px) {
+  .container {
+      width: 90%;
+  }
+  /*
+  .chart {
+      flex: 1 1 48%; 
+  }
+      */
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .container {
+      width: 95%;
+  }
+
+  .sidebar {
+      font-size: 1.2rem;
+  }
+
+  .top-bar input {
+      padding: 8px;
+      font-size: 1rem;
+  }
+
+  .charts {
+      flex-direction: column;
+  }
+
+  .chart {
+    flex: 1 1 100%; /* Ensures full width on tablets */
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 10px;
+    display: flex; /* Ensure the container uses flex */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .sidebar {
+    margin: 0; /* Remove right margin */
+    width: 100%; /* Full width */
+    box-shadow: none; /* Optional: Remove shadow for mobile */
+    height:max-content;
+    margin-bottom: 10px;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .top-bar input,
+  .top-bar button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+
+  
+  .weather-info {
+    gap: 15px;
+  }
+  .current-weather h2 {
+      font-size: 1.8rem;
+  }
+
+  .current-weather .temp {
+      font-size: 1.4rem;
+  }
+
+  .charts {
+      flex-direction: column;
+      gap:5px;
+  }
+
+  
+  .chart {
+margin:0;
+    flex: 1 1 100%; /* Ensures full width on mobile */
+    margin-bottom: 15px; /* Space between stacked items */
+    max-width:100%;
+  }
+}

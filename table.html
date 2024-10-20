@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App Tables</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <div class="blur-overlay"></div>
+  <video autoplay loop muted class="bg-video">
+    <source src="bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h1>Weather App</h1>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="table.html">Tables</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <input type="text" placeholder="Enter City" id="city-input" value="Seoul">
+        <button id="get-weather">Get Weather</button>
+        <div class="user-profile">
+          <img class="pimg" src="profile.jpg" width="50" height="50" alt="Profile Image">
+        </div>
+      </header>
+
+      <section class="weather-info">
+        <div class="loading-spinner"></div>
+
+        <div class="content-wrapper">
+          <div class="table-container">
+            <h2 id="city-forecast-message">5-Day Weather Forecast of </h2>
+            <div id="error-message" class="error-message"></div>
+
+            <div class="table-controls">
+              <label for="sort-dropdown">Sort by:</label>
+              <select id="sort-dropdown" onchange="handleSort()">
+                <option value="">Select</option>
+                <option value="temp-asc">Temperature (Ascending)</option>
+                <option value="temp-desc">Temperature (Descending)</option>
+              </select>
+
+              <label for="filter-dropdown">Filter by:</label>
+              <select id="filter-dropdown" onchange="handleFilter()">
+                <option value="">Select</option>
+                <option value="rainy">Rainy Days</option>
+                <option value="max-temp">Max Temperature Day</option>
+              </select>
+            </div>
+
+            <table id="forecast-table" class="styled-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Temperature (°C)</th>
+                  <th>Weather</th>
+                  <th>Rain</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Weather data will be populated here via JavaScript -->
+              </tbody>
+            </table>
+
+            <div class="pagination">
+              <button id="prev-page" class="pagination-btn" disabled>Previous</button>
+              <span id="current-page">1</span>
+              <button id="next-page" class="pagination-btn">Next</button>
+            </div>
+          </div>
+
+          <div class="chatbot-container">
+            <input type="text" id="chat-input" placeholder="Ask me anything..." />
+            <button id="send-message">Send</button>
+            <div id="chatbot-answers">Answer Area for Chatbot</div>
+          </div>
+
+          <script src="chatbot.js"></script>
+
+        </div>
+      </section>
+      
+    </div>
+  </div>
+
+  <script src="table.js"></script>
+</body>
+</html>
