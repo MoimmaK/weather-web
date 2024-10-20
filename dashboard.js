@@ -3,23 +3,27 @@ const apiKey = '75d0b61f83f5c9bb7c350ac2c2bbc288'; // Replace with your OpenWeat
 // Set the default value for the city input to "Seoul"
 document.getElementById('city-input').value = 'Seoul';
 
-
-let geolocationPromptShown = false; // Flag to check if the prompt has been shown
-
 // Call getWeather() automatically when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if geolocation is supported and prompt hasn't been shown
-    if (navigator.geolocation && !geolocationPromptShown) {
-        getWeatherByGeolocation();
-        geolocationPromptShown = true; // Set flag to true after showing the prompt
+    // Reset the session storage entry when navigating to the page
+    sessionStorage.removeItem('geolocationPromptShown');
+
+    // Check if geolocation is supported
+    if (navigator.geolocation) {
+        // Check if the prompt has been shown in this session
+        const geolocationPromptShown = sessionStorage.getItem('geolocationPromptShown');
+        if (!geolocationPromptShown) {
+            getWeatherByGeolocation(); // Prompt for geolocation
+        } else {
+            getWeather(); // Call getWeather() if the prompt has been shown
+        }
     } else {
-        getWeather(); // If not allowed or already prompted, call getWeather()
+        getWeather(); // If not allowed, call getWeather()
     }
 });
 
 // Function to fetch weather data based on geolocation
 function getWeatherByGeolocation() {
-    
     const spinner = document.querySelector('.loading-spinner');
     const overlay = document.querySelector('.blur-overlay');
 
@@ -31,7 +35,10 @@ function getWeatherByGeolocation() {
         (position) => {
             const { latitude, longitude } = position.coords; // Get coordinates
             fetchWeatherByCoords(latitude, longitude); // Fetch weather data using coordinates
-            document.getElementById('city-input').value='';
+            document.getElementById('city-input').value = ''; // Clear city input
+
+            // Set the session storage entry to indicate that the prompt has been shown
+            sessionStorage.setItem('geolocationPromptShown', 'true');
         },
         (error) => {
             console.error(error);
@@ -39,10 +46,11 @@ function getWeatherByGeolocation() {
             spinner.style.display = 'none';
             overlay.style.display = 'none';
             getWeather(); // Allow user to enter a city name if geolocation fails
-            document.getElementById('city-input').value='';
+            document.getElementById('city-input').value = ''; // Clear city input
         }
     );
 }
+
 
 // Function to fetch weather data based on coordinates
 function fetchWeatherByCoords(lat, lon) {
